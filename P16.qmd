@@ -5,6 +5,19 @@ author: "Vera Lynn Alonzo"
 ---
 
 ```{r}
-#try 1
+library(tokenizers)
+library(gutenbergr)
+library(dplyr)
+library(tidytext)
+```
+
+```{r}
+unclevanya <- gutenberg_download(c(1756)) 
+
+tidyuncle <- unclevanya |> 
+  unnest_tokens(word, text) |> 
+  anti_join(stop_words)
+
+print(tidyuncle)
 ```
 
